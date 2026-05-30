@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kio Agency — Премиальный видеомонтаж</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Общие сбросы и базовая дизайн-система */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: #FFFFFF;
+            color: #0A0A0A;
+            overflow-x: hidden;
+        }
+
+        /* Тонкие премиальные границы 1px с прозрачностью */
+        .border-bottom {
+            border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+        }
+
+        /* Навигация: Плавающий Frosted-Glass остров */
+        .nav-container {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(10, 10, 10, 0.08);
+            border-radius: 100px;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .brand-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #0A0A0A;
+            font-size: 0.9rem;
+            font-weight: 500;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Кнопки */
+        .btn-primary {
+            background-color: #0044FF; /* Глубокий технологичный синий */
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #0033CC;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(10, 10, 10, 0.15);
+            color: #0A0A0A;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-block;
+        }
+
+        .btn-outline:hover {
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+            border-color: #0A0A0A;
+        }
+
+        /* Секции общего назначения */
+        section {
+            padding: 120px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* HERO СЕКЦИЯ */
+        .hero-section {
+            padding-top: 200px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .badge {
+            border: 1px solid rgba(10, 10, 10, 0.15);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 32px;
+            display: inline-block;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            max-width: 900px;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        /* Премиальный акцентный курсив с засечками */
+        .hero-title em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: #0A0A0A;
+            opacity: 0.7;
+            max-width: 650px;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        /* Плейсхолдер под крупный логотип вместо VSL */
+        .logo-placeholder-container {
+            width: 100%;
+            max-width: 900px;
+            margin-top: 70px;
+            padding: 100px 24px;
+            border: 1px solid rgba(10, 10, 10, 0.08);
+            border-radius: 24px;
+            background: rgba(10, 10, 10, 0.02);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-logo-big {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        /* СЕКЦИЯ С КЕЙСАМИ */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            letter-spacing: -0.5px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .portfolio-card {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .video-thumbnail-placeholder {
+            width: 100%;
+            aspect-ratio: 9/16; /* Вертикальный формат 9:16 под Reels */
+            background-color: #0A0A0A;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-card:hover .video-thumbnail-placeholder {
+            transform: scale(0.98);
+        }
+
+        /* СТИЛИЗАЦИЯ ПЛЕЙХЕДА (КРУГ + ТРЕУГОЛЬНИК) */
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2); /* Легкое затемнение видео */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 5;
+            transition: opacity 0.3s ease;
+        }
+
+        .play-button-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.3); /* Полупрозрачный белый фон круга */
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: transform 0.2s ease;
+        }
+
+        .play-button-icon::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 16px;
+            border-color: transparent transparent transparent #FFFFFF; /* Белый треугольник */
+            margin-left: 4px;
+        }
+
+        .portfolio-card:hover .play-button-icon {
+            transform: scale(1.1);
+        }
+
+        /* Класс, который скроет кнопку, когда видео запущено */
+        .portfolio-card.playing .play-overlay {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .portfolio-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .portfolio-client {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.5;
+            margin-bottom: 6px;
+        }
+
+        .portfolio-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* ОТЗЫВЫ (ТИПОГРАФИКА) */
+        .testimonials-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .testimonial-item {
+            max-width: 900px;
+        }
+
+        .testimonial-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 0.7;
+        }
+
+        /* ОБО МНЕ / ОБ АГЕНТСТВЕ */
+        .about-split {
+            display: flex;
+            gap: 80px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .about-split {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .about-col {
+                width: 100% !important;
+            }
+        }
+
+        .about-col {
+            width: 50%;
+        }
+
+        .about-img-placeholder {
+            width: 100%;
+            aspect-ratio: 1/1; /* Квадрат для логотипа */
+            background-color: #F5F5F7;
+            border-radius: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border: 1px solid rgba(10, 10, 10, 0.05);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .principles-list {
+            list-style: none;
+        }
+
+        .principles-list li {
+            margin-bottom: 20px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .principles-list li::before {
+            content: "•";
+            color: #0044FF;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -4px;
+        }
+
+        .principles-list strong {
+            color: #0A0A0A;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ФИНАЛЬНЫЙ СТА */
+        .cta-section {
+            text-align: center;
+            padding-bottom: 160px;
+        }
+
+        .pulsing-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 24px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #22C55E;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 48px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-container">
+        <div class="brand-name">Kio Agency</div>
+        <div class="nav-links">
+            <a href="#portfolio">Кейсы</a>
+            <a href="#testimonials">Отзывы</a>
+            <a href="#about">О нас</a>
+        </div>
+        <a href="https://t.me/kiokioklop" target="_blank" class="btn-primary">Связаться</a>
+    </nav>
+
+    <section class="hero-section">
+        <div class="badge">ДЛЯ ЭКСПЕРТОВ И ОНЛАЙН-БИЗНЕСА</div>
+        <h1 class="hero-title">Преврати зрителя в лояльного <em>покупателя</em></h1>
+        <p class="hero-subtitle">Видеомонтаж с акцентом на удержание и максимальную конверсию.</p>
+        <a href="https://t.me/kiokioklop" target="_blank" class="btn-primary">Связаться со мной</a>
+        
+        <div class="logo-placeholder-container">
+            <div class="hero-logo-big">Kio Agency</div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="border-bottom">
+        <h2 class="section-title">Избранные кейсы</h2>
+        <div class="portfolio-grid">
+            
+            <div class="portfolio-card" onclick="toggleVideo(this)">
+                <div class="video-thumbnail-placeholder">
+                    <div class="play-overlay">
+                        <div class="play-button-icon"></div>
+                    </div>
+                    <video loop playsinline style="width:100%; height:100%; object-fit:cover;">
+                        <source src="Brez Scales.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="portfolio-meta">
+                    <div>
+                        <p class="portfolio-client">Brez Scales</p>
+                        <h3 class="portfolio-name">Brez Scales</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" onclick="toggleVideo(this)">
+                <div class="video-thumbnail-placeholder">
+                    <div class="play-overlay">
+                        <div class="play-button-icon"></div>
+                    </div>
+                    <video loop playsinline style="width:100%; height:100%; object-fit:cover;">
+                        <source src="Оскар Хартманн.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="portfolio-meta">
+                    <div>
+                        <p class="portfolio-client">Oscar Hartmann</p>
+                        <h3 class="portfolio-name">Неравенство растет</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card" onclick="toggleVideo(this)">
+                <div class="video-thumbnail-placeholder">
+                    <div class="play-overlay">
+                        <div class="play-button-icon"></div>
+                    </div>
+                    <video loop playsinline style="width:100%; height:100%; object-fit:cover;">
+                        <source src="лдпр.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="portfolio-meta">
+                    <div>
+                        <p class="portfolio-client">LDPR MANIFEST</p>
+                        <h3 class="portfolio-name">Досмотры на ЕГЭ</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="testimonials" class="border-bottom">
+        <h2 class="section-title">Что говорят клиенты</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-item">
+                <p class="testimonial-text">«Работа с Kio Agency полностью изменила наше представление о продакшне. Удержание аудитории выросло с первых роликов, а глубина досмотров превзошла все ожидания бизнеса.»</p>
+                <p class="testimonial-author">— Крупный образовательный проект</p>
+            </div>
+            <div class="testimonial-item">
+                <p class="testimonial-text">«Идеальное понимание динамики и смыслов. Ребята не просто монтируют по ТЗ, а сами предлагают решения, которые генерируют лояльных клиентов.»</p>
+                <p class="testimonial-author">— Бизнес-эксперт</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-split border-bottom">
+        <div class="about-col">
+            <div class="about-img-placeholder">
+                <img src="photo_2026-05-30_23-57-12.jpg" alt="Kio Agency" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+        </div>
+        <div class="about-col">
+            <h2 class="section-title" style="margin-bottom:30px;">Смыслы и Результат</h2>
+            <p class="about-text">
+                Kio Agency — это продакшн полного цикла для тех, кто ценит смыслы и результат. Мы не просто монтируем видео и накладываем эффекты. Мы создаем контент, который удерживает внимание с первой секунды и превращает случайных зрителей в лояльных клиентов вашего бизнеса.
+            </p>
+            <ul class="principles-list">
+                <li>
+                    <strong>Глубокое погружение</strong>
+                    Анализируем вашу нишу и целевую аудиторию перед тем, как сделать первую склейку.
+                </li>
+                <li>
+                    <strong>Конверсионный монтаж</strong>
+                    Каждый графический элемент, звук и переход работают на то, чтобы донести ключевой смысл и довести зрителя до целевого действия.
+                </li>
+                <li>
+                    <strong>Система и дедлайны</strong>
+                    Берем на себя весь технический продакшн, освобождая ваше время для стратегических задач.
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2 class="section-title" style="margin-bottom:20px;">Обсудить проект</h2>
+        <a href="https://t.me/kiokioklop" target="_blank" class="btn-primary" style="padding: 16px 40px; font-size: 1rem;">Начать сотрудничество</a>
+        
+        <div class="pulsing-container">
+            <div class="pulse-dot"></div>
+            <span>Доступен к новым проектам</span>
+        </div>
+
+        <div class="social-row">
+            <a href="https://t.me/kiokioklop" target="_blank" class="btn-outline">Telegram</a>
+        </div>
+    </section>
+
+    <script>
+        function toggleVideo(card) {
+            const video = card.querySelector('video');
+            
+            // Остановить другие плееры при запуске нового
+            document.querySelectorAll('.portfolio-card').forEach(otherCard => {
+                if (otherCard !== card) {
+                    const otherVid = otherCard.querySelector('video');
+                    otherVid.pause();
+                    otherCard.classList.remove('playing');
+                }
+            });
+
+            if (video.paused) {
+                video.muted = false; // Включаем звук
+                video.play();
+                card.classList.add('playing');
+            } else {
+                video.pause();
+                card.classList.remove('playing');
+            }
+        }
+    </script>
+</body>
+</html>
